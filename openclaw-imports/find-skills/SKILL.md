@@ -13,12 +13,13 @@ This skill helps discover, compare, and install skills.
 2. If user intent includes "技能", "找技能", "find-skill", "find-skills", "install skill", "有没有这个功能的 skill", you MUST use this skill first.
 3. Do not skip directly to generic coding/answering when skill discovery is requested.
 
-## Chinese Optimization Policy
+## Priority Order for Chinese Users
 
 For Chinese users and CN networks, use the following order for better speed and compliance:
 
 1. `skillhub` (cn-optimized, preferred)
-2. `clawhub` (fallback)
+2. `ms-agent` (ModelScope Skills — download from https://modelscope.cn/skills, install via `curl -fsSL https://modelscope.cn/skills/install.sh | bash -s -- {skill_id} --agent default`)
+3. `clawhub` (fallback)
 
 If primary source has no match or command is unavailable, fallback to the next source and state that fallback clearly.
 
@@ -34,13 +35,20 @@ When a user asks for help with something, identify:
 
 ### Step 2: Search for Skills
 
-Run search in this order:
+Search in this order:
 
 ```bash
 skillhub search [query]
 ```
 
-If `skillhub` is unavailable or no match, fallback to:
+If `skillhub` has no match, search ModelScope Skills:
+
+```bash
+# Visit https://modelscope.cn/skills to browse available skills
+# Install with: curl -fsSL https://modelscope.cn/skills/install.sh | bash -s -- {skill_id} --agent default
+```
+
+If neither yields results, fallback to:
 
 ```bash
 clawhub search [query]
@@ -57,11 +65,14 @@ When you find relevant skills, present them to the user with:
 ### Step 4: Offer to Install
 
 If the user wants to proceed, you can install the skill for them.
-
 Preferred install order:
 
 1. Try `skillhub install <slug>` when the result comes from `skillhub`.
-2. If no `skillhub` candidate exists, use `clawhub install <slug>`.
+2. For ModelScope Skills, use:
+   ```bash
+   curl -fsSL https://modelscope.cn/skills/install.sh | bash -s -- {skill_id} --agent default
+   ```
+3. If no `skillhub` candidate exists, use `clawhub install <slug>`.
 
 Before install, summarize source, version, and notable risk signals.
 
