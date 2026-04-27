@@ -56,6 +56,8 @@
 | [wechat-miniprogram-toolkit](skills/wechat-miniprogram-toolkit/) | 小程序全栈开发（数据库/云函数/支付/TRTC） | 小程序全栈开发、微信支付、直播等复杂场景时 |
 | [wechat-miniprogram-ui-ux](skills/wechat-miniprogram-ui-ux/) | 小程序 UI/UX 设计指南 | 小程序页面设计、交互优化时 |
 | [tencentmap-miniprogram-skill](skills/tencentmap-miniprogram-skill/) | 腾讯位置服务小程序开发 | 小程序地图功能、LBS 服务时 |
+| [cloudbase](skills/cloudbase/) | CloudBase 全栈开发套件（网站/小程序/云函数/数据库/托管） | CloudBase 全栈开发、部署、数据库、云函数时 |
+| [cloudbase-mcp](skills/cloudbase-mcp/) | CloudBase MCP Server | MCP 配置、腾讯云开发工具集成时 |
 
 ---
 
@@ -146,6 +148,9 @@
 
 ### mcp
 - cloudbase-mcp, native-mcp
+
+### cloudbase
+- ai-model-nodejs, ai-model-web, ai-model-wechat, auth-nodejs-cloudbase, auth-tool-cloudbase, auth-web-cloudbase, auth-wechat-miniprogram, cloud-functions, cloud-storage-web, cloudbase-agent, cloudbase-document-database-in-wechat, cloudbase-document-database-web-sdk, cloudbase-platform, cloudrun-development, data-model-creation, http-api-cloudbase, relational-database-mcp-cloudbase, relational-database-web-cloudbase, spec-workflow, ui-design, web-development
 
 ### note-taking
 - obsidian
