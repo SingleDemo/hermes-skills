@@ -41,7 +41,7 @@
 | [summarize](skills/summarize/) | summarize CLI 总结 URL/文件（网页/PDF/图片/音频/YouTube） | 快速总结网页、文档、视频、音频内容时 |
 | [web-fetch-performance](skills/web-fetch-performance/) | 网页抓取速度排行与降级策略（curl > mcp_fetch > jina > 浏览器） | 抓取任意网页时，先加载此技能按速度排行依次尝试 |
 | [jina-web-fetcher](skills/jina-web-fetcher/) | Jina AI 抓取网页（curl 直接请求更快） | 备选网页抓取，已安装但实测 curl 更快 |
-| [self-improving](skills/self-improving/) | 自我反思+自我批评+自组织记忆系统 | 命令失败、用户纠正、知识过时时 |
+| [self-improving](skills/self-improving/) | 自我反思+自我批评+自组织记忆系统，触发：命令失败/用户纠正/知识过时/发现更好方法/用户提及 | 命令失败、用户纠正、知识过时、发现更好方法、用户提及时 |
 | [github](skills/github/) | GitHub CLI (gh) 工作流 — PR/Issue/Repo/CodeReview | 操作 GitHub Repo、PR、Issue、代码审查时 |
 | [hermes-gateway-debug](skills/hermes-gateway-debug/) | Hermes Gateway 连接状态排查 | Gateway 报 disconnected、微信/元宝无响应时 |
 | [weixin-reconnect](skills/weixin-reconnect/) | 微信重连完整流程 | 微信 Session expired 或账号失联时 |
