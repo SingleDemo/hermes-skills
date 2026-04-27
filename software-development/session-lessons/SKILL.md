@@ -114,4 +114,45 @@ git ls-remote https://git.weixin.qq.com/<账号>/<仓库名>.git
 
 ---
 
+## 经验八：YAML 配置文件中替换 token 的正确方法
+
+**场景**：替换 `config.yaml` 中的 API token
+
+**踩坑汇总**：
+
+1. **终端显示截断 ≠ 文件内容截断**：很多工具（`cat`、terminal output）碰到超长行会用 `...` 截断显示，但实际文件内容可能是完整的。用 Python 读取文件逐行检查 token 长度才能确认。
+
+2. **heredoc 变量展开问题**：`cat <<EOF` 在 zsh/bash 中会展开 `$variable`，如果 token 包含 `$` 或看起来像变量名，会被替换成空值导致 token 损坏。解法：用 Python 写入或 `cat <<'EOF'`（单引号抑制展开）。
+
+3. **sed/patch 文本替换失败**：当 old_string 和实际文件内容之间有不可见字符差异（制表符 vs 空格、隐藏字符）时，patch/replace 会匹配失败。解法：用 Python 打开文件，print repr 确认实际字节内容，再决定怎么替换。
+
+4. **正确替换流程**：
+   ```python
+   python3 -c "
+   with open('/path/to/config.yaml', 'rb') as f:
+       content = f.read()
+   # 用 b'...' bytes 方式处理，避免编码问题
+   old = b'old-token'
+   new = b'new-token'
+   if old in content:
+       content = content.replace(old, new)
+       with open('/path/to/config.yaml', 'wb') as f:
+           f.write(content)
+       print('替换成功')
+   else:
+       print('未找到目标')
+   "
+   ```
+
+5. **验证 token 完整性**：替换后用 Python 逐字节读取，不要依赖终端显示。
+   ```python
+   with open('/path/to/config.yaml') as f:
+       for i, line in enumerate(f, 1):
+           if 'MINIMAX_API_KEY' in line:
+               token = line.strip().split(': ', 1)[1]
+               print(f'长度: {len(token)}, 前缀: {token[:10]}, 后缀: {token[-10:]}')
+   ```
+
+---
+
 *本 skill 由 session-lessons 自动积累，下次遇到相同场景直接加载使用。*
