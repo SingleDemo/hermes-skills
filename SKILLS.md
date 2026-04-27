@@ -49,6 +49,13 @@
 | [find-skills](skills/find-skills/) | SkillHub/ClawHub 技能搜索与安装 | 用户请求找/装技能时最高优先级触发 |
 | [yuanbao](skills/yuanbao/) | 元宝群交互 — @成员、查询群信息 | 元宝群 @提及其他用户、查询群信息时 |
 | [skillhub-hermes-sync](skills/skillhub-hermes-sync/) | SkillHub 技能目录与 Hermes 技能目录同步方法 | 同步/安装 SkillHub 技能时 |
+| [miniprogram-architect](skills/miniprogram-architect/) | 小程序架构设计与分层 | 小程序项目架构设计、技术选型时 |
+| [miniprogram-development](skills/miniprogram-development/) | 小程序开发全流程指南 | 小程序开发调试时 |
+| [wechat-miniprogram-automator](skills/wechat-miniprogram-automator/) | 自动化微信小程序 DevTools | 小程序自动化测试、DevTools 驱动时 |
+| [wechat-miniprogram-skill](skills/wechat-miniprogram-skill/) | 微信小程序入门到精通 | 小程序入门学习、开发时 |
+| [wechat-miniprogram-toolkit](skills/wechat-miniprogram-toolkit/) | 小程序全栈开发（数据库/云函数/支付/TRTC） | 小程序全栈开发、微信支付、直播等复杂场景时 |
+| [wechat-miniprogram-ui-ux](skills/wechat-miniprogram-ui-ux/) | 小程序 UI/UX 设计指南 | 小程序页面设计、交互优化时 |
+| [tencentmap-miniprogram-skill](skills/tencentmap-miniprogram-skill/) | 腾讯位置服务小程序开发 | 小程序地图功能、LBS 服务时 |
 
 ---
 
@@ -115,6 +122,9 @@
 
 ### minimax
 - android-native-dev, frontend-dev, fullstack-dev, gif-sticker-maker, ios-application-dev, minimax-docx, minimax-multimodal-toolkit, minimax-pdf, minimax-xlsx, pptx-generator, shader-dev
+
+### wechat-miniprogram
+- miniprogram-architect, miniprogram-development, wechat-miniprogram-automator, wechat-miniprogram-skill, wechat-miniprogram-toolkit, wechat-miniprogram-ui-ux, tencentmap-miniprogram-skill
 
 ### minimax-mcp
 - minimax-mcp

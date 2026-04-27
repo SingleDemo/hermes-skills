@@ -1,34 +1,47 @@
 ---
 name: github
-description: GitHub workflow skills for managing repositories, pull requests, code reviews, issues, and CI/CD pipelines using the gh CLI and git via terminal.
+description: "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries."
 ---
 
 # GitHub Skill
 
-## 子技能（按需使用）
+Use the `gh` CLI to interact with GitHub. Always specify `--repo owner/repo` when not in a git directory, or use URLs directly.
 
-| 子技能 | 说明 |
-|--------|------|
-| [github-pr-workflow](github-pr-workflow/) | PR 完整生命周期 |
-| [github-issues](github-issues/) | Issue 管理 |
-| [github-code-review](github-code-review/) | 代码审查 |
-| [github-repo-management](github-repo-management/) | Repo 管理 |
-| [github-auth](github-auth/) | GitHub 认证 |
-| [github-cli-auth](github-cli-auth/) | GitHub CLI 认证（PAT） |
-| [codebase-inspection](codebase-inspection/) | 代码库统计 |
+## Pull Requests
 
-## 快速使用
+Check CI status on a PR:
+```bash
+gh pr checks 55 --repo owner/repo
+```
+
+List recent workflow runs:
+```bash
+gh run list --repo owner/repo --limit 10
+```
+
+View a run and see which steps failed:
+```bash
+gh run view <run-id> --repo owner/repo
+```
+
+View logs for failed steps only:
+```bash
+gh run view <run-id> --repo owner/repo --log-failed
+```
+
+## API for Advanced Queries
+
+The `gh api` command is useful for accessing data not available through other subcommands.
+
+Get PR with specific fields:
+```bash
+gh api repos/owner/repo/pulls/55 --jq '.title, .state, .user.login'
+```
+
+## JSON Output
+
+Most commands support `--json` for structured output.  You can use `--jq` to filter:
 
 ```bash
-# 查看 PR
-gh pr list
-
-# 创建 PR
-gh pr create -t "标题" -b "描述"
-
-# 代码审查
-gh pr review PR号 --comment "评论"
-
-# 查看 Issue
-gh issue list
+gh issue list --repo owner/repo --json number,title --jq '.[] | "\(.number): \(.title)"'
 ```
