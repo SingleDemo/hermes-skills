@@ -58,6 +58,7 @@
 | [tencentmap-miniprogram-skill](skills/tencentmap-miniprogram-skill/) | 腾讯位置服务小程序开发 | 小程序地图功能、LBS 服务时 |
 | [cloudbase](skills/cloudbase/) | CloudBase 全栈开发套件（网站/小程序/云函数/数据库/托管） | CloudBase 全栈开发、部署、数据库、云函数时 |
 | [cloudbase-mcp](skills/cloudbase-mcp/) | CloudBase MCP Server | MCP 配置、腾讯云开发工具集成时 |
+| [session-lessons](skills/session-lessons/) | 本次对话积累的实战经验（技能安装/GitHub同步/微信Git认证） | 执行技能安装、GitHub同步、git.weixin.qq.com认证时 |
 
 ---
 
@@ -177,7 +178,7 @@
 - xurl
 
 ### software-development
-- messenger-api-format-troubleshooting, plan, requesting-code-review, subagent-driven-development, systematic-debugging, test-driven-development, writing-plans
+- messenger-api-format-troubleshooting, plan, requesting-code-review, session-lessons, subagent-driven-development, systematic-debugging, test-driven-development, writing-plans
 
 ### summarize
 - summarize
