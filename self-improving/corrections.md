@@ -34,3 +34,9 @@
 - [17:36] SKILLS.md 修改原则
   - 速查表（双栏表格）和强制规则是不同内容，可以并存，不要互斥删除
   - 修改前先确认用户要保留哪些部分
+
+- [14:27] 批量安装技能时不要逐个调用 skills-sync.sh
+  - skills-sync.sh 每次都 git fetch 远程（30-40s），N 个技能串行就很慢
+  - 正确做法：所有技能安装完成后，统一做一次 SKILLS.md 更新 + git add + commit + push
+  - Commit 已经 staging 了，直接 amend 或新开一个 commit 都比串行快
+  - 发现场景：连续安装 7 个微信小程序技能时，逐个调用导致前台阻塞
