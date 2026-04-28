@@ -1,6 +1,6 @@
 ---
 name: session-lessons
-description: 本次对话积累的实战经验与教训，覆盖技能安装、GitHub同步、微信Git认证等操作规范。触发时机：执行技能安装、GitHub同步、git.weixin.qq.com认证时。
+description: 本次对话积累的实战经验与教训，覆盖技能安装、GitHub同步、微信Git认证等操作规范。触发时机：执行技能安装、GitHub同步、git.weixin.qq.com认证、memory工具调用时。
 version: 1.0.0
 author: hermes
 tags: [workflow, git, skillhub, github, wechat]
@@ -152,6 +152,29 @@ git ls-remote https://git.weixin.qq.com/<账号>/<仓库名>.git
                token = line.strip().split(': ', 1)[1]
                print(f'长度: {len(token)}, 前缀: {token[:10]}, 后缀: {token[-10:]}')
    ```
+
+---
+
+## 经验九：memory 工具会冻结 Hermes（重要）
+
+**触发条件**：`memory` 工具被调用后，Hermes 平台会在对话中显示"💾 Memory updated"标记，随后 Hermes 无法响应。
+
+**发现过程**：
+- 用户观察到：每次说完某类内容后 Hermes 就冻住，排查发现是 memory 工具调用
+- memory 工具调用成功后会返回完整 memory entries，Hermes 渲染该消息时触发冻结
+- 触发后的恢复方式：用户手动 restart Hermes
+
+**解法**：
+- 不在对话中调用 memory 工具（改为 execute_code/python 写文件）
+- 如必须使用 memory 工具，不在对话中返回结果给用户（工具本身不显示结果）
+- 重要记忆直接写在对话里告知用户，由用户在后续新会话中自己写入
+
+**备查：记忆文件写入方式**
+```python
+# 用 execute_code 写记忆文件
+with open('/home/agentuser/.hermes/memory_notes.txt', 'a') as f:
+    f.write(f"{datetime}: {重要内容}\n")
+```
 
 ---
 

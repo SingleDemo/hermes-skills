@@ -62,19 +62,29 @@ When you find relevant skills, present them to the user with:
 2. The source used (`skillhub` / `clawhub`)
 3. The install command they can run
 
-### Step 4: Offer to Install
+### Step 4: Install the Skill
 
-If the user wants to proceed, you can install the skill for them.
-Preferred install order:
+Install via `skillhub install <slug>` using the **exact slug** returned by search.
 
-1. Try `skillhub install <slug>` when the result comes from `skillhub`.
-2. For ModelScope Skills, use:
-   ```bash
-   curl -fsSL https://modelscope.cn/skills/install.sh | bash -s -- {skill_id} --agent default
-   ```
-3. If no `skillhub` candidate exists, use `clawhub install <slug>`.
+⚠️ **Slug vs search name**: The slug is NOT always the same as the search keyword.
+Examples:
+- Search "playwright" → slug is `playwright` (NOT `playwright-automation-mcp-scraper`)
+- Search "ocr local v2" → slug is `ocr-local-v2`
+- Search "data analysis" → slug is `data-analysis-skill`
+- Search "find skills" → slug is `find-skills` (may already be installed)
 
-Before install, summarize source, version, and notable risk signals.
+If `skillhub install <slug>` returns HTTP 404, try the simpler base name from search results.
+
+### Step 5: Sync to Hermes
+
+After install, skillhub CLI puts skills in `~/skills/` but Hermes reads `~/.hermes/skills/`.
+Create symlinks manually:
+
+```bash
+ln -sf ~/skills/<slug> ~/.hermes/skills/<slug>
+```
+
+Then update `~/.hermes/skills/SKILLS.md` "已安装技能速查表" and git commit + push.
 
 ## When No Skills Are Found
 
