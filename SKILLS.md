@@ -47,6 +47,11 @@
 | [weixin-reconnect](skills/weixin-reconnect/) | 微信重连完整流程 | 微信 Session expired 或账号失联时 |
 | [messenger-api-format-troubleshooting](skills/messenger-api-format-troubleshooting/) | 排查微信/元宝等 messenger 平台无法对话 | iLink 会话过期或 AI provider 无响应时 |
 | [find-skills](skills/find-skills/) | SkillHub/ClawHub 技能搜索与安装 | 用户请求找/装技能时最高优先级触发 |
+| [playwright](skills/playwright/) | 浏览器自动化，支持截图/爬虫/MCP | 需要无头浏览器操控网页时 |
+| [browser-use](skills/browser-use/) | browser-use CLI，persistent session，支持 cookie/profile/cloud | 需要复杂浏览器交互、cookie 同步、云浏览器时 |
+| [browser-screenshot](skills/browser-screenshot/) | 截图工具对比：npx playwright 最佳，滚动翻页用 Node 脚本 | 需要截图网页、滚动翻页抓数据时 |
+| [ocr-local-v2](skills/ocr-local-v2/) | Tesseract.js 本地 OCR（无需 API Key） | 图片文字识别、截图转文字 |
+| [data-analysis-skill](skills/data-analysis-skill/) | 数据分析技能包，抓取/清洗/可视化/报告 | 数据分析、Excel自动化、运营报告 |
 | [yuanbao](skills/yuanbao/) | 元宝群交互 — @成员、查询群信息 | 元宝群 @提及其他用户、查询群信息时 |
 | [skillhub-hermes-sync](skills/skillhub-hermes-sync/) | SkillHub 技能目录与 Hermes 技能目录同步方法 | 同步/安装 SkillHub 技能时 |
 | [miniprogram-architect](skills/miniprogram-architect/) | 小程序架构设计与分层 | 小程序项目架构设计、技术选型时 |
@@ -94,13 +99,13 @@
 - claude-code, codex, hermes-agent, opencode
 
 ### creative
-- architecture-diagram, ascii-art, ascii-video, baoyu-infographic, excalidraw, ideation, manim-video, p5js, pixel-art, songwriting-and-ai-music
+- architecture-diagram, ascii-art, ascii-video, baoyu-infographic, excalidraw, frinkiac, ideation, manim-video, p5js, pixel-art, songwriting-and-ai-music, wechat-sticker-maker
 
 ### data-science
 - jupyter-live-kernel
 
 ### devops
-- webhook-subscriptions
+- docker, webhook-subscriptions
 
 ### dogfood
 - dogfood
@@ -124,10 +129,10 @@
 - gif-search, heartmula, songsee, youtube-content
 
 ### minimax
-- android-native-dev, frontend-dev, fullstack-dev, gif-sticker-maker, ios-application-dev, minimax-docx, minimax-multimodal-toolkit, minimax-pdf, minimax-xlsx, pptx-generator, shader-dev
+- android-native-dev, frontend-dev, frontend-design-ultimate, frontend-design-3, fullstack-dev, gif-sticker-maker, ios-application-dev, minimax-docx, minimax-multimodal-toolkit, minimax-pdf, minimax-xlsx, pptx-generator, shader-dev, tailwindcss, lb-shadcn-ui-skill, nextjs, ui-ux-pro-max
 
 ### wechat-miniprogram
-- miniprogram-architect, miniprogram-development, wechat-miniprogram-automator, wechat-miniprogram-skill, wechat-miniprogram-toolkit, wechat-miniprogram-ui-ux, tencentmap-miniprogram-skill
+- miniprogram-architect, miniprogram-development, wechat-miniprogram-automator, wechat-miniprogram-skill, wechat-miniprogram-toolkit, wechat-miniprogram-ui-ux, tencentmap-miniprogram-skill, wechat-article-spider, wechat-article-search, weapp-automated-testing
 
 ### minimax-mcp
 - minimax-mcp
@@ -166,7 +171,10 @@
 - godmode
 
 ### research
-- arxiv, blogwatcher, llm-wiki, polymarket
+- arxiv, blogwatcher, deep-research-pro, multi-search-engine, academic-deep-research, web-search, youtube-watcher, gemini-deep-research, research-paper-writer, context7-api, qmd-cli, qmd-external
+
+### productivity
+- google-workspace, linear, maps, markdown-converter, nano-pdf, notion, ocr-local, excel-xlsx-1, word-docx-1, tencent-docs, weather, powerpoint, web-fetch-performance
 
 ### skillhub-hermes-sync
 - skillhub-hermes-sync
