@@ -178,4 +178,24 @@ with open('/home/agentuser/.hermes/memory_notes.txt', 'a') as f:
 
 ---
 
+---
+
+## 经验十：himalaya CLI 在此环境无法安装
+
+**时间**：2026-04-29
+
+**场景**：用户要求配置 QQ 邮箱（1634064164@qq.com）用于邮件客户端
+
+**尝试过的安装方式（全部失败）**：
+1. 官方安装脚本 `curl -sSL .../install.sh | PREFIX=~/.local sh` → **超时**（60s）
+2. `cargo install himalaya --locked` → **cargo 不存在**
+3. 直接下载 GitHub release tarball → **被用户/系统拦截**
+4. `apt-cache search` / `snap find` → **无包**
+
+**结论**：此 Linux 环境对 GitHub 下载有网络限制/超时，cargo 未装，snap/apt 无 himalaya。
+
+**替代方案**：如需在此环境使用邮件 CLI，改用 `mutt` / `neomutt` / `sendmail`/`mail` 等系统已有工具；或者让用户手动在目标平台（GitHub/CloudBase/其他）绑定 QQ 邮箱。
+
+**教训**：配置邮件客户端前，先 `which himalaya` 确认是否已安装；如果未安装，先问用户要在哪个平台绑定，再决定下一步，避免白跑一趟。
+
 *本 skill 由 session-lessons 自动积累，下次遇到相同场景直接加载使用。*
