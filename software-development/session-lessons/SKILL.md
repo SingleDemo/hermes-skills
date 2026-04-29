@@ -223,4 +223,39 @@ terminal(background=true, command="cd ~/.hermes/skills && git push", notify_on_c
 
 **教训**：以后每次增删 skill 后，同步更新 SKILLS.md + commit 不要分两次提交（容易忘）。
 
+## 经验十二：mihomo 代理配置（悠兔 anytls 订阅）
+
+**时间**：2026-04-30
+
+**场景**：需要在 Linux CLI 环境配置代理访问 GitHub
+
+**组件**：
+- mihomo binary：`/tmp/mihomo/mihomo`（需提前下载，gh-proxy.com 绕过拦截）
+- 配置文件：`/tmp/mihomo/config.yaml`
+- 订阅源：`https://cdn.yooo2.com/dy/8dc1b00bc2566d6e588f400e54835157`
+
+**关键配置要点**：
+- 悠兔节点协议是 `anytls`，**不是 `hysteria2`**
+- hysteria2 和 anytls 是完全不同的协议，写错会导致所有节点 alive=false
+- 订阅转换时需指定 `type: anytls`，不能用 hysteria2 模板
+
+**开关流程**：
+- 开启（前台运行，供当前会话使用）：`cd /tmp/mihomo && ./mihomo -f config.yaml`
+- 关闭：`pkill mihomo`
+- 验证：`curl -x http://127.0.0.1:7890 https://api.github.com/zen` → 返回 200 则正常
+
+**使用策略**：
+- 平时关闭，不占用资源
+- 只在用户明确要求访问 GitHub 或需要代理时开启
+- 用完主动问用户是否关闭
+
+**常见错误**：
+- `hysteria2` 全死 → 换成 `anytls`
+- 悠兔订阅地址含特殊字符 → 用 Python 解析，不直接 grep
+- mihomo 需要 supervisor 或 systemd 托管，否则终端退出后进程终止
+
+**备用方案**：gh-proxy.com 直接作为 GitHub 下载代理（不走本地代理）
+
+---
+
 *本 skill 由 session-lessons 自动积累，下次遇到相同场景直接加载使用。*
