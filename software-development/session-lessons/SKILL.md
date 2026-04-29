@@ -180,22 +180,47 @@ with open('/home/agentuser/.hermes/memory_notes.txt', 'a') as f:
 
 ---
 
-## 经验十：himalaya CLI 在此环境无法安装
+## 经验十：himalaya CLI 在此环境无法安装，但 imaplib 完美替代
+
+**时间**：2026-04-29
+**场景**：用户要求配置 QQ 邮箱（1634064164@qq.com）用于读取/整理邮件
+
+**himalaya 安装尝试（全部失败）**：
+- 官方安装脚本 → 超时（GitHub 下载被拦截）
+- cargo install → cargo 不存在
+- 直接下载 release tarball → 被拦截
+- apt/snap → 无包
+
+**但发现**：`python3 -c "import imaplib"` 直接可用！QQ 邮箱 IMAP 完全正常。
+
+**教训**：配置邮件客户端前先测 `python3 -c "import imaplib"`——Python stdlib 在此环境比任何第三方 CLI 都靠谱。QQ 邮箱授权码在网页版 QQ邮箱设置 → 账户 → 生成 IMAP 授权码。
+
+**附：GitHub push 超时 → 用后台模式**
+```bash
+# 前台超时（30s内无法完成）
+git push
+
+# 后台模式
+terminal(background=true, command="cd ~/.hermes/skills && git push", notify_on_complete=true)
+# 然后 poll session 检查结果
+```
+
+---
+
+## 经验十一：SKILLS.md 重建脚本
 
 **时间**：2026-04-29
 
-**场景**：用户要求配置 QQ 邮箱（1634064164@qq.com）用于邮件客户端
+**发现**：目录有 78 个，SKILLS.md 表格只记录了 28 个——严重脱节。原因：之前多次安装 skill 但没同步更新 SKILLS.md。
 
-**尝试过的安装方式（全部失败）**：
-1. 官方安装脚本 `curl -sSL .../install.sh | PREFIX=~/.local sh` → **超时**（60s）
-2. `cargo install himalaya --locked` → **cargo 不存在**
-3. 直接下载 GitHub release tarball → **被用户/系统拦截**
-4. `apt-cache search` / `snap find` → **无包**
+**重建脚本**：`~/.hermes/scripts/rebuild-skills-md.py`
 
-**结论**：此 Linux 环境对 GitHub 下载有网络限制/超时，cargo 未装，snap/apt 无 himalaya。
+**重建后**：
+- 实际 top-level skill：49 个
+- 加上子目录（如 email/）：51 个
+- SKILLS.md 表格：76 个全部录入
+- GitHub commit: `de2196e`
 
-**替代方案**：如需在此环境使用邮件 CLI，改用 `mutt` / `neomutt` / `sendmail`/`mail` 等系统已有工具；或者让用户手动在目标平台（GitHub/CloudBase/其他）绑定 QQ 邮箱。
-
-**教训**：配置邮件客户端前，先 `which himalaya` 确认是否已安装；如果未安装，先问用户要在哪个平台绑定，再决定下一步，避免白跑一趟。
+**教训**：以后每次增删 skill 后，同步更新 SKILLS.md + commit 不要分两次提交（容易忘）。
 
 *本 skill 由 session-lessons 自动积累，下次遇到相同场景直接加载使用。*

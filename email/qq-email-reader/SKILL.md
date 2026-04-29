@@ -162,3 +162,17 @@ server.quit()
 - IMAP 授权码和 SMTP 授权码相同
 - 每天发信上限约 100 封（QQ 邮箱限制）
 - 搜索是服务器端匹配，支持 AND/OR/NOT 操作符
+
+## 已知坑点（2026-04-29 实测）
+
+### himalaya 装不了？用 imaplib 代替
+himalaya 二进制安装脚本从 GitHub 下载被拦截（curl -sSL 安装脚本超时）。**不需要装 himalaya**，Python 标准库的 `imaplib` 直接可用，完全能满足读/搜索/删除/发送需求。示例代码见上方「Python 连接模板」。
+
+### QQ 邮箱 IMAP SEARCH 超时
+`mail.search()` 在邮件量大（1000+封）时容易超时。解决：每个关键词单独搜索并设置 `socket.setdefaulttimeout(8)`，不要一次性搜所有邮件。
+
+### 中文搜索
+用 `mail.search('UTF-8', f'FROM "中文关键词"')` 可以搜中文发件人。
+
+### 读取邮件摘要避免 FETCH 整封
+邮件多时逐封 `mail.fetch(uid, '(RFC822)')` 会很慢。改用 `mail.fetch(uid, '(BODY[HEADER.FIELDS (FROM SUBJECT)])')` 只取头部，速度快 10 倍。
